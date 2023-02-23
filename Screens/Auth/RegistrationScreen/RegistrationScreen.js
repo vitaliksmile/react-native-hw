@@ -41,6 +41,10 @@ const RegistrationScreen = ({ navigation }) => {
       >
         <TouchableWithoutFeedback onPress={onActive}>
           <View style={styles.container}>
+            <TouchableOpacity
+              style={styles.userPhoto}
+              activeOpacity={0.8}
+            ></TouchableOpacity>
             <View
               style={{ ...styles.form, marginBottom: activeKayboard ? 32 : 66 }}
             >
@@ -116,11 +120,23 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   container: {
+    position: "relative",
     backgroundColor: "white",
-
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     // opacity: 0.8,
+  },
+  userPhoto: {
+    position: "absolute",
+    top: -60,
+    right: "50%",
+    transform: [{ translateX: 60 }],
+    maxWidth: 120,
+    minWidth: 120,
+    height: 120,
+    borderRadius: 30,
+
+    backgroundColor: "#F6F6F6",
   },
   form: {
     marginHorizontal: 16,

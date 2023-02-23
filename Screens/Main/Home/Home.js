@@ -15,7 +15,7 @@ const Home = ({ navigation }) => {
         name="Posts"
         component={PostsScreen}
         options={{
-            // headerShown: false,
+          // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             <Feather name="grid" size={24} color={color} />
           ),
