@@ -1,0 +1,47 @@
+import React from "react";
+
+import { createStackNavigator } from "@react-navigation/stack";
+
+const AuthStack = createStackNavigator();
+
+import CreatePostsScreen from "./Screens/Main/CreatePostsScreen/CreatePostsScreen";
+import LoginScreen from "./Screens/Auth/LoginScreen/LoginScreen";
+import RegistrationScreen from "./Screens/Auth/RegistrationScreen/RegistrationScreen";
+import Home from "./Screens/Main/Home/Home";
+import CommentsScreen from "./Screens/Main/CommentsScreen/CommentsScreen";
+
+export const useRoute = (isAuth) => {
+  if (!isAuth) {
+    return (
+      <AuthStack.Navigator>
+        <AuthStack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={LoginScreen}
+        />
+        <AuthStack.Screen
+          options={{ headerShown: false }}
+          name="Registration"
+          component={RegistrationScreen}
+        />
+      </AuthStack.Navigator>
+    );
+  }
+  return (
+    <AuthStack.Navigator
+      screenOptions={{
+        headerBackTitleVisible: false,
+      }}
+    >
+      <AuthStack.Screen
+        name="Home"
+        options={{
+          headerShown: false,
+        }}
+        component={Home}
+      />
+      <AuthStack.Screen name="CreatePosts" component={CreatePostsScreen} />
+      <AuthStack.Screen name="Comments" component={CommentsScreen} />
+    </AuthStack.Navigator>
+  );
+};
