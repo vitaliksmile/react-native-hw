@@ -135,7 +135,6 @@ const styles = StyleSheet.create({
     minWidth: 120,
     height: 120,
     borderRadius: 30,
-
     backgroundColor: "#F6F6F6",
   },
   form: {
