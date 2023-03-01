@@ -11,20 +11,26 @@ import {
   TouchableWithoutFeedback,
   ImageBackground,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { authSingUpUser } from "../../../redux/auth/authOperations";
 
 const initialState = {
-  login: "",
+  name: "",
   email: "",
   password: "",
 };
 
 const RegistrationScreen = ({ navigation }) => {
   const [state, setState] = useState(initialState);
+
+  const dispatch = useDispatch();
+
   const [activeKayboard, setActiveKayboard] = useState(false);
   const submitValue = () => {
     setActiveKayboard(false);
     Keyboard.dismiss();
     console.log(state);
+    dispatch(authSingUpUser(state));
     setState(initialState);
   };
 
@@ -60,9 +66,9 @@ const RegistrationScreen = ({ navigation }) => {
                     style={styles.input}
                     placeholder="Логин"
                     onFocus={() => setActiveKayboard(true)}
-                    value={state.login}
+                    value={state.name}
                     onChangeText={(value) =>
-                      setState((prevState) => ({ ...prevState, login: value }))
+                      setState((prevState) => ({ ...prevState, name: value }))
                     }
                   />
                 </View>

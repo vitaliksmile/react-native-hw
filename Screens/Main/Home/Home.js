@@ -1,15 +1,33 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import PostsScreen from "../PostsScreen/PostsScreen";
 import CreatePostsScreen from "../CreatePostsScreen/CreatePostsScreen";
 import ProfileScreen from "../ProfileScreen/ProfileScreen";
+import { useDispatch } from "react-redux";
+import { authSingOutUser } from "../../../redux/auth/authOperations";
 
 const MainTab = createBottomTabNavigator();
 
 const Home = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    // alert("This is a button!");
+    dispatch(authSingOutUser());
+  };
+
+  const alertOut = () => {
+    Alert.alert("Message", "Do you wont exit", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: handleLogout},
+    ]);
+  };
   return (
     <MainTab.Navigator
       tabBarOptions={{ showLabel: false }}
@@ -34,7 +52,7 @@ const Home = ({ navigation }) => {
               name="log-out"
               size={24}
               color="#BDBDBD"
-              onPress={() => alert("This button is for exit!")}
+              onPress={alertOut}
             />
           ),
         }}
@@ -71,7 +89,7 @@ const Home = ({ navigation }) => {
               name="log-out"
               size={24}
               color="#BDBDBD"
-              onPress={() => alert("This is a button!")}
+              onPress={alertOut}
             />
           ),
         }}

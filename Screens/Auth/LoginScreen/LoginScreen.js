@@ -12,6 +12,10 @@ import {
   ImageBackground,
 } from "react-native";
 
+import { useDispatch } from "react-redux";
+
+import { authSingInUser } from "../../../redux/auth/authOperations";
+
 const initialState = {
   email: "",
   password: "",
@@ -20,10 +24,13 @@ const initialState = {
 const LoginScreen = ({ navigation }) => {
   const [state, setState] = useState(initialState);
   const [activeKayboard, setActiveKayboard] = useState(false);
+
+  const dispatch = useDispatch();
+
   const submitValue = () => {
     setActiveKayboard(false);
     Keyboard.dismiss();
-    console.log(state);
+    dispatch(authSingInUser(state));
     setState(initialState);
   };
 

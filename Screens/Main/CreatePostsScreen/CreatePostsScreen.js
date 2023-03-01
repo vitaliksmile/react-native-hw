@@ -179,8 +179,6 @@ const styles = StyleSheet.create({
     marginTop: 32,
     borderRadius: 8,
     marginBottom: 8,
-    // border: 1,
-    // borderColor: "#E8E8E8",
   },
   textUnderPhoto: {
     color: "#BDBDBD",
